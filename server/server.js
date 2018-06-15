@@ -17,9 +17,23 @@ var io = socketIO(server);
 io.on('connection', (socket) => {
       console.log('New user connected');
 
+      
+
+      socket.emit('newMessage', {
+      	 from:'arnold',
+         to: 'daniel',
+         text: 'How far?',
+         createdAt: 124 
+      });
+
+      socket.on('createMessage', (message) => {
+      	console.log('createMessage', message);
+      });
+
+   
       socket.on('disconnect', () => {
        console.log('User was disconnected');
-      });
+      }); 
 });
 
 
